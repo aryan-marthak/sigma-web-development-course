@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms</title>
+  </head>
+  <body>
+    <h1>what is your username??</h1>
+
+    <form action="post">
+      <div>
+        <label for="username">enter your username</label>
+        <input
+          type="text"
+          name="username"
+          placeholder="enter your username"
+          id="username"
+        />
+      </div>
+      <div>
+        <label for="male">Male</label>
+        <input type="radio" name="gender" id="male" />
+         <label for="female">Female</label>
+        <input type="radio" name="gender" id="female" />
+      </div>
+      <div>
+        <label for="blue">blue</label>
+        <input type="checkbox" name="color" id="blue" />
+
+        <label for="yellow">yellow</label>
+        <input type="checkbox" name="color" id="yellow" />
+
+        <label for="red">red</label>
+        <input type="checkbox" name="color" id="red" />
+      </div>
+
+      <div>
+        <select name="fruits" id="fruits">
+          <option value="apple">apple</option>
+          <option value="cherry">cherry</option>
+          <option value="banana">banana</option>
+        </select>
+      </div>
+    </form>
+  </body>
+</html>
