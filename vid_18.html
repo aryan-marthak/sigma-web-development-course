@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Model</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .box{
+            background-color: rebeccapurple;
+        }
+
+        .box2{
+            color: yellow;
+            padding: 10px;
+            margin: 5px;
+            border: 2px solid   red;
+            height: 200px;
+            box-sizing: border-box;
+        }
+
+        .box1{
+            color: green;
+            padding: 10px;
+            margin: 5px;
+            border: 2px solid   red;
+            height: 200px;
+            box-sizing: border-box; /* This is important to include the padding and border in the element's total width and height*/
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box box1">I am a box</div>
+    <div class="box box2">big box </div>
+</body>
+</html>
