@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Float and Clear</title>
+    <style>
+        .cards{
+            border: 2px solid black;
+            display: flow-root; /* to avoid overflow*/
+        }
+        img{
+            float: right;
+        }
+        .card{
+            border: 2px solid red;
+        }
+        .card:nth-child(3){
+            background-color: cyan;
+            clear: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="cards">
+        <img src="https://media.istockphoto.com/id/1208877516/photo/old-man-and-the-sea.jpg?s=612x612&w=0&k=20&c=uehCCP7wTeem0mD90LXCgbDb5kRwCOcAXq8UB4_Li7M=" alt="" width="344px">
+        <div class="card">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ea corrupti labore ut, eligendi ducimus itaque sapiente odit quos optio facilis! Similique incidunt asperiores obcaecati!</p>
+        </div>
+        <div class="card"><P>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit ratione obcaecati quam dicta. Harum maiores omnis ullam quo aut asperiores nisi, dolor sint voluptate facilis, blanditiis praesentium sequi dignissimos eveniet nulla aspernatur adipisci velit quibusdam accusamus molestiae id, repellendus recusandae! Id, porro? Porro nam quibusdam ab nemo quas consequatur aut, et molestias cum non officia, consequuntur voluptate sapiente temporibus optio aliquid vero laboriosam. Beatae ex at architecto consequatur saepe. Ea ex eveniet, consequatur nam, consequuntur hic quasi eius, officia aut tempore odit voluptate tempora id ad nobis delectus explicabo eum magni repudiandae architecto odio suscipit? Quo dolore molestias distinctio esse, veniam numquam architecto! Asperiores ullam quidem molestiae enim in! Quo dolorem neque inventore a animi? Minus doloremque, nam, reiciendis temporibus rem harum obcaecati nemo dolorum eveniet libero iusto illum dolorem adipisci officiis? Eius iure similique nemo temporibus natus aut. Sit, at pariatur rerum placeat fuga hic? Inventore quas modi dignissimos, aliquid rerum facere voluptatibus harum tempora sint vero suscipit esse? Provident facilis, ad voluptatum vero blanditiis quibusdam quae alias quod excepturi dicta sit, perferendis voluptatem, aut nulla atque eum dignissimos. Unde, nam excepturi iste ipsa esse minus error. Distinctio quo quae, alias magni placeat, quis, commodi earum enim blanditiis eos cumque incidunt assumenda sit nesciunt aspernatur temporibus aliquam officiis at reprehenderit illum repellat quidem dolorem. Sit, dolores? Eligendi reiciendis eius assumenda! In cupiditate sapiente cum officiis ut iure magni odio hic. Esse dolorem possimus numquam impedit laudantium, voluptatum temporibus voluptatibus doloremque fuga nam et dignissimos consectetur id eligendi commodi, tempore cum non magnam architecto aliquid consequatur voluptates? Architecto ea cumque dolores debitis nobis alias necessitatibus officia rerum error ipsa, tempore atque nesciunt consequatur quia ipsam dolorem! Unde dolorum adipisci quos molestias cumque repudiandae, libero dicta amet. Amet atque odio quasi nemo, molestias impedit cumque iste voluptas reiciendis nostrum, commodi vel exercitationem quisquam repellendus earum ea voluptate error magni dolores, dolore eum! Dolor tempora velit at molestiae, est dignissimos corporis vero eaque amet debitis nesciunt suscipit eos cumque totam, quae modi quaerat ab. Doloremque velit deleniti, iste sapiente molestias minus aspernatur molestiae atque perferendis tempore sunt temporibus possimus, voluptates nemo, illum itaque! Dignissimos praesentium voluptatum eum sunt debitis ea exercitationem error aliquam fugit porro rerum, est fuga hic, neque officia. In tempore illum quasi? Cumque neque enim optio voluptatum minus tempore quod iste veniam consequatur, doloribus, saepe maiores molestiae. Libero eveniet excepturi aliquid dicta in obcaecati modi quas iste nisi!</P></div>
+        <div class="card">card 3</div>
+    </div>
+</body>
+</html>
