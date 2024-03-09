@@ -40,5 +40,5 @@ else{
     third = "Hub"
 }
 
-console.log(`Your company name is ${first} ${second} ${third}.`);
+console.log(`Your company name is ${first} ${second} ${third}`);
 
