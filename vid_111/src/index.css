@@ -1,0 +1,17 @@
+.card{
+  border: 2px solid black;
+  max-width: 20vw;
+}
+
+.container{
+  display: flex;
+  padding-top: 5px;
+  gap: 34px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
