@@ -3,6 +3,7 @@ import { useRef } from 'react'
 
 const Manager = () => {
     const ref = useRef()
+    const passwordRef = useRef()
 
     const [passwordArray, setpasswordArray] = useState([])
 
@@ -29,19 +30,21 @@ const Manager = () => {
     }
 
     const showPassowrd = () => {
-        //   alert("showing password")
+        passwordRef.current.type = "text"
         if (ref.current.src.includes("icons/eye.svg")) {
-
+            
             ref.current.src = "icons/eyecross.svg"
-        }
-        else {
-            ref.current.src = "icons/eye.svg"
+            passwordRef.current.type = "text"
+            }
+            else {
+                ref.current.src = "icons/eye.svg"
+                passwordRef.current.type = "password"
         }
     }
 
     return (
         <>
-            <div className="absolute inset-0 -z-10 bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#9f9eff_100%)]"></div>
+            <div class="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)]"></div>
 
 
             <div className=" mycontainer mt-5">
@@ -52,7 +55,7 @@ const Manager = () => {
                     <div className='flex w-full justify-between gap-4'>
                         <input onChange={handleChange} value={form.username} placeholder='Enter Username' className='rounded-full border border-purple-800 w-[75%] py-1 px-4' type="text" name="username" id="" />
                         <div className=' relative '>
-                            <input onChange={handleChange} value={form.password} placeholder='Enter Password' className='rounded-full border border-purple-800 w-full py-1 px-4' type="text" name="password" id="" />
+                            <input ref={passwordRef} onChange={handleChange} value={form.password} placeholder='Enter Password' className='rounded-full border border-purple-800 w-full py-1 px-4' type="password" name="password" id="" />
                             <span onClick={showPassowrd} className=' cursor-pointer absolute right-0'><img ref={ref} className=' px-2 pt-[5px]' src="icons/eye.svg" alt="eye" /></span>
                         </div>
                     </div>
@@ -69,7 +72,7 @@ const Manager = () => {
                     <h2 className=' font-bold text-center text-purple-500 text-2xl underline underline-offset-2 py-4'>Your Passwords</h2>
                     {passwordArray.length === 0 && <div> No Passwords Saved </div>}
                     {passwordArray.length != 0 &&
-                        <table className="table-auto w-full rounded-md overflow-hidden">
+                        <table className="table-auto mb-24 w-full rounded-md overflow-hidden">
                             <thead className=' bg-purple-700 text-white'>
                                 <tr>
                                     <th className='py-2'>Site</th>
