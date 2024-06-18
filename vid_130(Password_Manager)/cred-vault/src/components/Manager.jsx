@@ -4,14 +4,15 @@ import { useRef } from 'react'
 const Manager = () => {
     const ref = useRef()
     const passwordRef = useRef()
-
-    const [passwordArray, setpasswordArray] = useState([])
+    
+    const [passwordArray, setPasswordArray] = useState([])
+    const [form, setform] = useState({ site: "", username: "", password: "" })
 
     useEffect(() => {
         let passwords = localStorage.getItem("passwords")
-        let passwordArray;
+        
         if (passwords) {
-            passwordArray = JSON.parse(passwords)
+            setPasswordArray(JSON.parse(passwords))
         }
 
     })
@@ -21,10 +22,9 @@ const Manager = () => {
     }
 
 
-    const [form, setform] = useState({ site: "", username: "", password: "" })
 
     const savePassword = () => {
-        setpasswordArray([...passwordArray, form])
+        setPasswordArray([...passwordArray, form])
         localStorage.setItem("password", JSON.stringify([...passwordArray, form]))
         console.log(...passwordArray, form)
     }
@@ -44,22 +44,22 @@ const Manager = () => {
 
     return (
         <>
-            <div class="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)]"></div>
+            <div className="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)]"></div>
 
 
             <div className=" mycontainer mt-5">
                 <h1 className=' text-4xl font-bold text-black underline underline-offset-4 text-center'>Cred<span className='text-purple-800'>Vault</span></h1>
                 <p className=' text-lg text-center pt-1 text-purple-900'>Safeguarding Your Precious Information Securely</p>
                 <div className='text-black flex flex-col p-4 px-40 gap-6 items-center'>
-                    <input onChange={handleChange} value={form.site} placeholder='Enter website URL' className=' rounded-full border border-purple-800 w-full py-1 px-4 ' type="text" name='site' id='' />
+                    <input onChange={handleChange} value={form.site} placeholder='Enter website URL' className=' rounded-full border border-purple-800 w-full py-1 px-4 ' type="text" name='site' id='1' />
                     <div className='flex w-full justify-between gap-4'>
-                        <input onChange={handleChange} value={form.username} placeholder='Enter Username' className='rounded-full border border-purple-800 w-[75%] py-1 px-4' type="text" name="username" id="" />
+                        <input onChange={handleChange} value={form.username} placeholder='Enter Username' className='rounded-full border border-purple-800 w-[75%] py-1 px-4' type="text" name="username" id="2" />
                         <div className=' relative '>
-                            <input ref={passwordRef} onChange={handleChange} value={form.password} placeholder='Enter Password' className='rounded-full border border-purple-800 w-full py-1 px-4' type="password" name="password" id="" />
+                            <input ref={passwordRef} onChange={handleChange} value={form.password} placeholder='Enter Password' className='rounded-full border border-purple-800 w-full py-1 px-4' type="password" name="password" id="3" />
                             <span onClick={showPassowrd} className=' cursor-pointer absolute right-0'><img ref={ref} className=' px-2 pt-[5px]' src="icons/eye.svg" alt="eye" /></span>
                         </div>
                     </div>
-                    <button onClick={savePassword} className=' gap-2 hover:bg-purple-600 font-bold flex justify-center items-center bg-purple-800 text-white font-outline-2 rounded-full px-6 border border-purple-900 border-2 py-2 w-fit'>
+                    <button onClick={savePassword} className=' gap-2 hover:bg-purple-600 font-bold flex justify-center items-center bg-purple-800 text-white font-outline-2 rounded-full px-6 border-purple-900 border-2 py-2 w-fit'>
                         <lord-icon
                             src="https://cdn.lordicon.com/hqymfzvj.json"
                             trigger="hover"
