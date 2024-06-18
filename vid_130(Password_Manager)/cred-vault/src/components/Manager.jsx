@@ -1,21 +1,38 @@
 import React, { useEffect, useState } from 'react'
 import { useRef } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Manager = () => {
     const ref = useRef()
     const passwordRef = useRef()
-    
+
     const [passwordArray, setPasswordArray] = useState([])
     const [form, setform] = useState({ site: "", username: "", password: "" })
 
     useEffect(() => {
         let passwords = localStorage.getItem("passwords")
-        
+
         if (passwords) {
             setPasswordArray(JSON.parse(passwords))
         }
 
     })
+
+    const copyText = (text) => {
+        toast('Copied to Clipboard!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            
+            });
+        navigator.clipboard.writeText(text)
+    }
 
     const handleChange = (e) => {
         setform({ ...form, [e.target.name]: e.target.value })
@@ -32,18 +49,34 @@ const Manager = () => {
     const showPassowrd = () => {
         passwordRef.current.type = "text"
         if (ref.current.src.includes("icons/eye.svg")) {
-            
+
             ref.current.src = "icons/eyecross.svg"
             passwordRef.current.type = "text"
-            }
-            else {
-                ref.current.src = "icons/eye.svg"
-                passwordRef.current.type = "password"
+        }
+        else {
+            ref.current.src = "icons/eye.svg"
+            passwordRef.current.type = "password"
         }
     }
 
     return (
         <>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition="Bounce"
+            />
+            {/* Same as */}
+            <ToastContainer />
+
             <div className="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)]"></div>
 
 
@@ -84,9 +117,42 @@ const Manager = () => {
                                 {passwordArray.map((item, index) => {
 
                                     return <tr key={index}>
-                                        <td className=' py-2 border border-white text-center w-16'><a href={item.site} target='_blank'>{item.site}</a></td>
-                                        <td className=' py-2 border border-white text-center w-16'>{item.username}</td>
-                                        <td className=' py-2 border border-white text-center w-16'>{item.password}</td>
+                                        <td className=' py-2 border border-white text-center'>
+                                            <div className='flex items-center justify-center'>
+                                                <a href={item.site} target='_blank'>{item.site}</a>
+                                                <div className=" size-7 cursor-pointer lordiconcopy" onClick={() => { copyText(item.site) }} >
+                                                    <lord-icon
+                                                        style={{ "width": "25px", "height": "25px", "paddingTop": "4px", "paddingLeft": "3px" }}
+                                                        src="https://cdn.lordicon.com/iykgtsbt.json"
+                                                        trigger="hover">
+                                                    </lord-icon>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className=' py-2 border border-white text-center'>
+                                            <div className='flex items-center justify-center'>
+                                                <span>{item.username}</span>
+                                                <div className=" size-7 cursor-pointer lordiconcopy" onClick={() => { copyText(item.username) }} >
+                                                    <lord-icon
+                                                        style={{ "width": "25px", "height": "25px", "paddingTop": "4px", "paddingLeft": "3px" }}
+                                                        src="https://cdn.lordicon.com/iykgtsbt.json"
+                                                        trigger="hover">
+                                                    </lord-icon>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className=' py-2 border border-white text-center'>
+                                            <div className='flex items-center justify-center'>
+                                                <span>{item.password}</span>
+                                                <div className=" size-7 cursor-pointer lordiconcopy" onClick={() => { copyText(item.password) }} >
+                                                    <lord-icon
+                                                        style={{ "width": "25px", "height": "25px", "paddingTop": "4px", "paddingLeft": "3px" }}
+                                                        src="https://cdn.lordicon.com/iykgtsbt.json"
+                                                        trigger="hover">
+                                                    </lord-icon>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 })}
                             </tbody>
