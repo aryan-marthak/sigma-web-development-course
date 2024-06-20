@@ -4,22 +4,23 @@ import { ToastContainer, toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const Manager = () => {
     const ref = useRef()
     const passwordRef = useRef()
     const [form, setform] = useState({ site: "", username: "", password: "" })
     const [passwordArray, setPasswordArray] = useState([])
-    
+
     const getPasswords = async () => {
         let req = await fetch("http://localhost:3000/")
         let passwords = await req.json()
         setPasswordArray(passwords)
     }
-    
+
+
     useEffect(() => {
         getPasswords()
     }, [])
+
 
     const copyText = (text) => {
         toast('Copied to clipboard!', {
@@ -35,8 +36,6 @@ const Manager = () => {
         navigator.clipboard.writeText(text)
     }
 
-
-
     const showPassword = () => {
         passwordRef.current.type = "text"
         console.log(ref.current.src)
@@ -50,15 +49,17 @@ const Manager = () => {
         }
 
     }
-    
+
     const savePassword = async () => {
         if (form.site.length > 3 && form.username.length > 3 && form.password.length > 3) {
 
-            await fetch("http://localhost:3000/", {method: "DELETE", headers: { "Content-Type": "application/json"}, body: JSON.stringify({ id: form.id})} )
+            // If any such id exists in the db, delete it 
+            await fetch("http://localhost:3000/", { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: form.id }) })
+
             setPasswordArray([...passwordArray, { ...form, id: uuidv4() }])
-            await fetch("http://localhost:3000/", {method: "POST", headers: { "Content-Type": "application/json"}, body: JSON.stringify({ ...form, id: uuidv4()})} )
-            // localStorage.setItem("passwords", JSON.stringify([...passwordArray, { ...form, id: uuidv4() }]))
-            console.log([...passwordArray, form])
+            await fetch("http://localhost:3000/", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...form, id: uuidv4() }) })
+
+            // Otherwise clear the form and show toast
             setform({ site: "", username: "", password: "" })
             toast('Password saved!', {
                 position: "top-right",
@@ -82,14 +83,14 @@ const Manager = () => {
         let c = confirm("Do you really want to delete this password?")
         if (c) {
             setPasswordArray(passwordArray.filter(item => item.id !== id))
-            await fetch("http://localhost:3000/", {method: DELETE, headers: { "Content-Type": "application/json"}, body: JSON.stringify({ id})} )
-            // localStorage.setItem("passwords", JSON.stringify(passwordArray.filter(item => item.id !== id)))
+            
+            await fetch("http://localhost:3000/", { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id }) })
+
             toast('Password Deleted!', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
+                closeOnClick: true, 
                 draggable: true,
                 progress: undefined,
                 theme: "dark",
@@ -97,12 +98,11 @@ const Manager = () => {
         }
 
     }
+
     const editPassword = (id) => {
-        setform({...passwordArray.filter(i => i.id === id)[0], id: id})
+        setform({ ...passwordArray.filter(i => i.id === id)[0], id: id })
         setPasswordArray(passwordArray.filter(item => item.id !== id))
-
     }
-
 
 
     const handleChange = (e) => {
